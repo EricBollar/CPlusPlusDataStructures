@@ -4,6 +4,7 @@
 # Prerequisites
 *.d
 *.DS_Store
+*.vscode
 
 # Compiled Object files
 *.slo
