@@ -88,5 +88,5 @@ int main() {
         }
     }
 
-    std::cout << solution << std::endl;
+    std::cout << "= " << solution << std::endl;
 }
