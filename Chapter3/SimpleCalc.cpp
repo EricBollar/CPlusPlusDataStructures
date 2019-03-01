@@ -76,15 +76,12 @@ int main() {
         }
     }
 
-    if (symbols.size() == 0) {
-        solution = numbers.at(0);
-    } else {
-        for (int i = 0; i < symbols.size(); i++) {
-            if (symbols.at(i) == '+') {
-                solution += numbers.at(i) + numbers.at(i + 1);
-            } else if (symbols.at(i) == '-') {
-                solution += numbers.at(i) - numbers.at(i + 1);
-            }
+    solution = numbers.at(0);
+    for (int i = 0; i < symbols.size(); i++) {
+        if (symbols.at(i) == '+') {
+            solution += numbers.at(i + 1);
+        } else if (symbols.at(i) == '-') {
+            solution -= numbers.at(i + 1);
         }
     }
 
