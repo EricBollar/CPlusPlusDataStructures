@@ -5,7 +5,7 @@
 
 const std::string digits = "0123456789"; // 0-9
 
-bool isDigit(char c) {
+bool isDigit(char c) { // returns whether a char is a digit or not
     for (int i = 0; i < digits.length(); i++) {
         if (c == digits.at(i)) {
             return true;
@@ -45,11 +45,11 @@ int main() {
         if (isDigit(equation.at(i))) {
             currNum += equation.at(i);
             if (i == equation.length() - 1) {
-                numbers.push_back(atoi(currNum.c_str()));
+                numbers.push_back(atoi(currNum.c_str())); //adds the current number to numbers(vector)
                 currNum = "";
             }
         } else if (currNum != "") {
-            numbers.push_back(atoi(currNum.c_str()));
+            numbers.push_back(atoi(currNum.c_str())); //adds the current number to numbers(vector)
             currNum = "";
         } else {
             currNum = "";
