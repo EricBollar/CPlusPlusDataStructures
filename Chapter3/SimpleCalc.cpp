@@ -20,11 +20,13 @@ int main() {
     std::vector<char> symbols; // all symbols (+-*/) in equation, in order
     int solution = 0; // solution that will be outputed
 
-    //receive equation input
+    // receive equation input as one string
     std::cout << "Please enter your equation using only adding, subtracting, multiplying, and dividing (+ - * /):" << std::endl;
     getline(std::cin, equation);
 
     // fills up symbols with all the symbols of equation in order, left -> right
+    // e.g. the equation "4 + 2 * 6 / 3",
+    // the symbols vector would be [+, *, /]
     for (int i = 0; i < equation.length(); i++) { //finds all multiplication/division/addition/subtraction symbols left -> right
         if (equation.at(i) == '*') {
             symbols.push_back('*');
