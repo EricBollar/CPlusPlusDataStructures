@@ -18,7 +18,7 @@ int main() {
     std::string equation; // variables
     std::vector<int> numbers; // all integers in equation, in order
     std::vector<char> symbols; // all symbols (+-*/) in equation, in order
-    int solution; // solution that will be outputed
+    int solution = 0; // solution that will be outputed
 
     //receive equation input
     std::cout << "Please enter your equation using only adding, subtracting, multiplying, and dividing (+ - * /):" << std::endl;
@@ -28,19 +28,15 @@ int main() {
     for (int i = 0; i < equation.length(); i++) { //finds all multiplication/division/addition/subtraction symbols left -> right
         if (equation.at(i) == '*') {
             symbols.push_back('*');
-            std::cout << '*' << std::endl;
         }
         if (equation.at(i) == '/') {
             symbols.push_back('/');
-            std::cout << '/' << std::endl;
         }
         if (equation.at(i) == '+') {
             symbols.push_back('+');
-            std::cout << '+' << std::endl;
         }
         if (equation.at(i) == '-') {
             symbols.push_back('-');
-            std::cout << '-' << std::endl;
         }
     }
  
@@ -49,16 +45,46 @@ int main() {
         if (isDigit(equation.at(i))) {
             currNum += equation.at(i);
             if (i == equation.length() - 1) {
-                std::cout << currNum << std::endl;
                 numbers.push_back(atoi(currNum.c_str()));
                 currNum = "";
             }
         } else if (currNum != "") {
-            std::cout << currNum << std::endl;
             numbers.push_back(atoi(currNum.c_str()));
             currNum = "";
         } else {
             currNum = "";
         }
     }
+
+    // now for solving the problem...
+    for (int i = 0; i < symbols.size(); i++) {
+        int curr = 0;
+        if (symbols.at(i) == '*') {
+            curr = numbers.at(i) * numbers.at(i + 1);
+            numbers.erase(numbers.begin() + i);
+            numbers.erase(numbers.begin() + i);
+            numbers.insert(numbers.begin() + i, curr);
+            symbols.erase(symbols.begin() + i);
+        } else if (symbols.at(i) == '/') {
+            curr = numbers.at(i) / numbers.at(i + 1);
+            numbers.erase(numbers.begin() + i);
+            numbers.erase(numbers.begin() + i);
+            numbers.insert(numbers.begin() + i, curr);
+            symbols.erase(symbols.begin() + i);
+        }
+    }
+
+    if (numbers.size() == 1) {
+        solution = numbers.at(0);
+    } else {
+        for (int i = 0; i < symbols.size(); i++) {
+            if (symbols.at(i) == '+') {
+                solution += numbers.at(i) + numbers.at(i + 1);
+            } else if (symbols.at(i) == '-') {
+                solution += numbers.at(i) - numbers.at(i + 1);
+            }
+        }
+    }
+
+    std::cout << solution << std::endl;
 }
