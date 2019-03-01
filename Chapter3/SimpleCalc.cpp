@@ -65,16 +65,18 @@ int main() {
             numbers.erase(numbers.begin() + i);
             numbers.insert(numbers.begin() + i, curr);
             symbols.erase(symbols.begin() + i);
-        } else if (symbols.at(i) == '/') {
+            i--; // needs to go back one iteration to make up for lost symbol
+        }else if (symbols.at(i) == '/') {
             curr = numbers.at(i) / numbers.at(i + 1);
             numbers.erase(numbers.begin() + i);
             numbers.erase(numbers.begin() + i);
             numbers.insert(numbers.begin() + i, curr);
             symbols.erase(symbols.begin() + i);
+            i--;
         }
     }
 
-    if (numbers.size() == 1) {
+    if (symbols.size() == 0) {
         solution = numbers.at(0);
     } else {
         for (int i = 0; i < symbols.size(); i++) {
