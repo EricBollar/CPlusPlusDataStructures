@@ -103,13 +103,51 @@ void pVp() { // runs a player vs. player game
     wld game = wld::cont;
     bool xTurn = true;
     int moves = 0;
+    int selection;
     
     while (game == wld::cont && moves < 9) {
         if (xTurn == true) {
+            std::cout << "X Player's turn!" << std::endl;
+            std::cout << "To select your space, please input the number of the tile." << std::endl;
+            std::cin >> selection;
+            selection--;
 
+            while (true) {
+                if (boardState[selection] == state::empty) {
+                    boardState[selection] = state::X;
+                    std::cout << std::endl;
+                    std::cout << "Your move: ";
+                    drawBoard(boardState);
+                    moves++;
+                    break;
+                } else {
+                    std::cout << "That space is not empty!" << std::endl;
+                }
+            }
+            xTurn = false;
         } else {
+            std::cout << "O Player's turn!" << std::endl;
+            std::cout << "To select your space, please input the number of the tile." << std::endl;
+            std::cin >> selection;
+            selection--;
 
+            while (true) {
+                if (boardState[selection] == state::empty) {
+                    boardState[selection] = state::O;
+                    std::cout << std::endl;
+                    std::cout << "Your move: ";
+                    drawBoard(boardState);
+                    moves++;
+                    break;
+                } else {
+                    std::cout << "That space is not empty!" << std::endl;
+                    std::cout << "To select your space, please input the number of the tile." << std::endl;
+                    std::cin >> selection;
+                }
+            }
+            xTurn = true;
         }
+
         game = checkState(boardState);
         moves++;
     }
