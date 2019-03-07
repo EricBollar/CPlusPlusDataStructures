@@ -1,12 +1,19 @@
-#include <iostream> // input-output stream. gives access to output statements as well as receiving inputs from user.
-#include <string> // allows the use of the data type string.
-#include <array> // allows the use of arrays.
+/**
+ * Eric Bollar
+ * This runs a simple tic tac toe game where the player can play against another play or against an AI.
+ * The AI will always win.
+ * Last updated 3/7/19
+ * */
+
+#include <iostream>
+#include <string> 
+#include <array> 
 
 /*
 
 Artwork:
 
- o ┃   ┃   
+ O ┃   ┃   
 ———╋———╋———
    ┃ x ┃   
 ———╋———╋———
@@ -15,6 +22,7 @@ Artwork:
 */
 
 enum state {empty, X, O};
+enum wld {xW, oW, draw, cont};
 
 void welcomeBoard() { // introduces player to game
     std::cout << std::endl;
@@ -38,7 +46,7 @@ char currSpace(state p) { // returns the correct character given a certain space
 
 void drawBoard(std::array<state, 9> b) { // draws the current boardstate
     std::cout << std::endl;
-    std::cout << " " << currSpace(b.at(0)) << " ┃ " << currSpace(b.at(1)) << " ┃ " << currSpace(b.at(2)) << std::endl;
+    std::cout << " " << currSpace(b[0]) << " ┃ " << currSpace(b[1]) << " ┃ " << currSpace(b[2]) << std::endl;
     std::cout << "———╋———╋———" << std::endl;
     std::cout << " " << currSpace(b.at(3)) << " ┃ " << currSpace(b.at(4)) << " ┃ " << currSpace(b.at(5)) << std::endl;
     std::cout << "———╋———╋———" << std::endl;
@@ -46,17 +54,68 @@ void drawBoard(std::array<state, 9> b) { // draws the current boardstate
     std::cout << std::endl;
 }
 
+wld checkState(std::array<state, 9> b) {
+    if (b[0] == state::X && b[1] == state::X && b[2] == state::X) {
+        return wld::xW;
+    } else if (b[0] == state::O && b[1] == state::O && b[2] == state::O) {
+        return wld::oW;
+    }
+    if (b[3] == state::X && b[4] == state::X && b[5] == state::X) {
+        return wld::xW;
+    } else if (b[3] == state::O && b[4] == state::O && b[5] == state::O) {
+        return wld::oW;
+    }
+    if (b[6] == state::X && b[7] == state::X && b[8] == state::X) {
+        return wld::xW;
+    } else if (b[6] == state::O && b[7] == state::O && b[8] == state::O) {
+        return wld::oW;
+    }
+    if (b[0] == state::X && b[3] == state::X && b[6] == state::X) {
+        return wld::xW;
+    } else if (b[0] == state::O && b[3] == state::O && b[6] == state::O) {
+        return wld::oW;
+    }
+    if (b[1] == state::X && b[4] == state::X && b[7] == state::X) {
+        return wld::xW;
+    } else if (b[1] == state::O && b[4] == state::O && b[7] == state::O) {
+        return wld::oW;
+    }
+    if (b[2] == state::X && b[5] == state::X && b[8] == state::X) {
+        return wld::xW;
+    } else if (b[2] == state::O && b[5] == state::O && b[8] == state::O) {
+        return wld::oW;
+    }
+    return wld::cont;
+}
+
 void playerAI() { // runs a player vs. AI game
-    std::cout << "p vs AI" << std::endl;
+    wld game = wld::cont;
+    bool playerTurn = true;
+
+    while (game == wld::cont) {
+
+    }
 }
 
 void pVp() { // runs a player vs. player game
-    std::cout << "p vs p" << std::endl;
+    static std::array<state, 9> boardState; // the state of the 9 space board
+    boardState.fill(state::empty); // fills the board with empty spaces
+    wld game = wld::cont;
+    bool xTurn = true;
+    int moves = 0;
+    
+    while (game == wld::cont && moves < 9) {
+        if (xTurn == true) {
+
+        } else {
+
+        }
+        game = checkState(boardState);
+        moves++;
+    }
 }
 
 int main () {
-    std::array<state, 9> boardState; // the state of the 9 space board
-    boardState.fill(state::empty); // fills the board with empty spaces
     std::string playChoice;
 
     std::cout << std::endl;
@@ -70,8 +129,6 @@ int main () {
         case 2 : welcomeBoard(); pVp(); break;
         default : std::cout << "Please enter a valid input" << std::endl; break;
     }
-
-    drawBoard(boardState);
 }
 
 
