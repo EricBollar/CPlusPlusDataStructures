@@ -2,7 +2,7 @@
  * Eric Bollar
  * This runs a simple tic tac toe game where the player can play against another player or against an AI.
  * The AI will always win.
- * Last updated 3/7/19
+ * Last updated 3/8/19
  * */
 
 #include <iostream>
@@ -21,8 +21,8 @@ Artwork:
 
 */
 
-enum state {empty, X, O};
-enum wld {xW, oW, cont};
+enum state {empty, X, O}; // state of each space
+enum wld {xW, oW, cont}; // win lose continue (gamestate)
 
 void welcomeBoard() { // introduces player to game
     std::cout << std::endl;
@@ -56,7 +56,7 @@ void drawBoard(std::array<state, 9> b) { // draws the current boardstate
     std::cout << std::endl;
 }
 
-wld checkState(std::array<state, 9> b) {
+wld checkState(std::array<state, 9> b) { // checks every possible win state for X and O
     if (b[0] == X && b[1] == X && b[2] == X) {
         return xW;
     } else if (b[0] == O && b[1] == O && b[2] == O) {
@@ -93,32 +93,30 @@ wld checkState(std::array<state, 9> b) {
 void playerAI() { // runs a player vs. AI game
     static std::array<state, 9> boardState; // the state of the 9 space board
     boardState.fill(empty); // fills the board with empty spaces
-    wld game = cont;
-    bool xTurn = true;
-    int moves = 0;
-    std::string selection;
+    wld game = cont; // win lose draw variable
+    bool xTurn = true; // whose turn it is
+    int moves = 0; // number of spaces filled
+    int space; // players space choice
 
     std::cout << "You will be playing as the X player. The AI will always win or draw." << std::endl;
 
-    while (game == cont && moves < 9) {
-        if (xTurn == true) {
+    while (game == cont && moves < 9) { // while the game has not been won yet or board not filled yet
+        if (xTurn == true) { // if x's turn else AI turn
             std::cout << "X Player's turn!" << std::endl;
             std::cout << "To select your space, please input the number of the tile: ";
-            std::cin >> selection;
-            int space = atoi(selection.c_str()) - 1;
+            std::cin >> space; // asks for player input for space choice
 
             bool choosing = true;
-            while (choosing) {
-                if (boardState[space] == empty) {
-                    boardState[space] = X;
+            while (choosing) { // while player is choosing a space
+                if (boardState[space] == empty) { // if the space is empty
+                    boardState[space] = X; // assigns the space an X
                     std::cout << std::endl;
-                    drawBoard(boardState);
-                    choosing = false;
-                } else {
-                    std::cout << "That space is not empty! Or that is an invalid input!" << std::endl;
+                    drawBoard(boardState); // re draws board (visual)
+                    choosing = false; // player is no longer choosing
+                } else { // if player chooses a filled space
+                    std::cout << "That space is not empty!" << std::endl;
                     std::cout << "To select your space, please input the number of the tile: ";
-                    std::cin >> selection;
-                    space = atoi(selection.c_str()) - 1;
+                    std::cin >> space; // asks for input again
                 }
             }
             xTurn = false;
@@ -126,11 +124,11 @@ void playerAI() { // runs a player vs. AI game
             
         }
 
-        game = checkState(boardState);
-        moves++;
+        game = checkState(boardState); // checks gamestate (win lose draw continue)
+        moves++; // number of spaces filled increased
     }
 
-    switch (game) {
+    switch (game) { // when game is over check win lose draw
         case xW : std::cout << "Player Wins!" << std::endl; std::cout << std::endl; break;
         case oW : std::cout << "AI Wins!" << std::endl; std::cout << std::endl; break;
         default : std::cout << "Draw" << std::endl; std::cout << std::endl; break;
@@ -140,61 +138,57 @@ void playerAI() { // runs a player vs. AI game
 void pVp() { // runs a player vs. player game
     static std::array<state, 9> boardState; // the state of the 9 space board
     boardState.fill(empty); // fills the board with empty spaces
-    wld game = cont;
-    bool xTurn = true;
-    int moves = 0;
-    std::string selection;
+    wld game = cont; // win lose draw variable
+    bool xTurn = true; // whose turn it is
+    int moves = 0; // number of spaces filled
+    int space; // players space choice
     
-    while (game == cont && moves < 9) {
-        if (xTurn == true) {
+    while (game == cont && moves < 9) { // while the game has not been won yet or board not filled yet
+        if (xTurn == true) { // if x's turn else o's turn
             std::cout << "X Player's turn!" << std::endl;
             std::cout << "To select your space, please input the number of the tile: ";
-            std::cin >> selection;
-            int space = atoi(selection.c_str()) - 1;
+            std::cin >> space; // asks for player input for space choice
 
             bool choosing = true;
-            while (choosing) {
-                if (boardState[space] == empty) {
-                    boardState[space] = X;
+            while (choosing) { // while player is choosing a space
+                if (boardState[space] == empty) { // if the space is empty
+                    boardState[space] = X; // assigns the space an X
                     std::cout << std::endl;
-                    drawBoard(boardState);
-                    choosing = false;
-                } else {
-                    std::cout << "That space is not empty! Or that is an invalid input!" << std::endl;
+                    drawBoard(boardState); // re draws board (visual)
+                    choosing = false; // player is no longer choosing
+                } else { // if player chooses a filled space
+                    std::cout << "That space is not empty!" << std::endl;
                     std::cout << "To select your space, please input the number of the tile: ";
-                    std::cin >> selection;
-                    space = atoi(selection.c_str()) - 1;
+                    std::cin >> space; // asks for input again
                 }
             }
-            xTurn = false;
-        } else {
+            xTurn = false; // no longer x's turn
+        } else { // o's turn
             std::cout << "O Player's turn!" << std::endl;
             std::cout << "To select your space, please input the number of the tile: ";
-            std::cin >> selection;
-            int space = atoi(selection.c_str()) - 1;
+            std::cin >> space; // asks for player input for space choice
 
             bool choosing = true;
-            while (choosing) {
-                if (boardState[space] == empty) {
-                    boardState[space] = O;
+            while (choosing) { // while player is choosing a space
+                if (boardState[space] == empty) { // if the space is empty
+                    boardState[space] = O; // assigns the space an O
                     std::cout << std::endl;
-                    drawBoard(boardState);
-                    choosing = false;
-                } else {
+                    drawBoard(boardState); // re draws board (visual)
+                    choosing = false; // player is no longer choosing
+                } else { // if player chooses a filled space
                     std::cout << "That space is not empty! Or that is an invalid input!" << std::endl;
                     std::cout << "To select your space, please input the number of the tile: ";
-                    std::cin >> selection;
-                    space = atoi(selection.c_str()) - 1;
+                    std::cin >> space; // asks for input again
                 }
             }
-            xTurn = true;
+            xTurn = true; // now is o's turn
         }
 
-        game = checkState(boardState);
-        moves++;
+        game = checkState(boardState); // checks gamestate (win lose draw continue)
+        moves++; // number of spaces filled increased
     }
 
-    switch (game) {
+    switch (game) { // when game is over check win lose draw
         case xW : std::cout << "X Wins!" << std::endl; std::cout << std::endl; break;
         case oW : std::cout << "O Wins!" << std::endl; std::cout << std::endl; break;
         default : std::cout << "Draw" << std::endl; std::cout << std::endl; break;
