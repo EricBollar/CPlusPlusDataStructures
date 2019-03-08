@@ -87,7 +87,156 @@ wld checkState(std::array<state, 9> b) { // checks every possible win state for 
     } else if (b[2] == O && b[5] == O && b[8] == O) {
         return oW;
     }
+    if (b[0] == X && b[4] == X && b[8] == X) {
+        return xW;
+    } else if (b[0] == O && b[4] == O && b[8] == O) {
+        return oW;
+    }
+    if (b[2] == X && b[4] == X && b[6] == X) {
+        return xW;
+    } else if (b[2] == O && b[4] == O && b[6] == O) {
+        return oW;
+    }
     return cont;
+}
+
+int chooseSpace(std::array<state, 9> b) { // returns best space for the AI to play - tries to block player 
+    // tries to win
+    if (b[4] == empty) {
+        return 4;
+    }
+    if (b[0] == O && b[1] == O && b[2] == empty) {
+        return 2;
+    } else if (b[1] == O && b[2] == O && b[0] == empty) {
+        return 0;
+    } else if (b[0] == O && b[2] == O && b[1] == empty) {
+        return 1;
+    } else if (b[3] == O && b[4] == O && b[5] == empty) {
+        return 5;
+    } else if (b[4] == O && b[5] == O && b[3] == empty) {
+        return 3;
+    } else if (b[3] == O && b[5] == O && b[4] == empty) {
+        return 4;
+    } else if (b[6] == O && b[7] == O && b[8] == empty) {
+        return 8;
+    } else if (b[7] == O && b[8] == O && b[6] == empty) {
+        return 6;
+    } else if (b[6] == O && b[8] == O && b[7] == empty) {
+        return 7;
+    } else if (b[0] == O && b[3] == O && b[6] == empty) {
+        return 6;
+    } else if (b[3] == O && b[6] == O && b[0] == empty) {
+        return 0;
+    } else if (b[0] == O && b[6] == O && b[3] == empty) {
+        return 3;
+    } else if (b[1] == O && b[4] == O && b[7] == empty) {
+        return 7;
+    } else if (b[4] == O && b[7] == O && b[1] == empty) {
+        return 1;
+    } else if (b[1] == O && b[7] == O && b[4] == empty) {
+        return 4;
+    } else if (b[2] == O && b[5] == O && b[8] == empty) {
+        return 8;
+    } else if (b[5] == O && b[8] == O && b[2] == empty) {
+        return 2;
+    } else if (b[2] == O && b[8] == O && b[5] == empty) {
+        return 5;
+    } else if (b[0] == O && b[4] == O && b[8] == empty) {
+        return 8;
+    } else if (b[4] == O && b[8] == O && b[0] == empty) {
+        return 0;
+    } else if (b[0] == O && b[8] == O && b[4] == empty) {
+        return 4;
+    } else if (b[2] == O && b[4] == O && b[6] == empty) {
+        return 6;
+    } else if (b[4] == O && b[6] == O && b[2] == empty) {
+        return 2;
+    } else if (b[2] == O && b[6] == O && b[4] == empty) {
+        return 4;
+    }
+
+    // if cannot win, tries to block player
+    if (b[4] == empty) {
+        return 4;
+    }
+    if (b[0] == X && b[1] == X && b[2] == empty) {
+        return 2;
+    } else if (b[1] == X && b[2] == X && b[0] == empty) {
+        return 0;
+    } else if (b[0] == X && b[2] == X && b[1] == empty) {
+        return 1;
+    }
+    if (b[3] == X && b[4] == X && b[5] == empty) {
+        return 5;
+    } else if (b[4] == X && b[5] == X && b[3] == empty) {
+        return 3;
+    } else if (b[3] == X && b[5] == X && b[4] == empty) {
+        return 4;
+    }
+    if (b[6] == X && b[7] == X && b[8] == empty) {
+        return 8;
+    } else if (b[7] == X && b[8] == X && b[6] == empty) {
+        return 6;
+    } else if (b[6] == X && b[8] == X && b[7] == empty) {
+        return 7;
+    }
+    if (b[0] == X && b[3] == X && b[6] == empty) {
+        return 6;
+    } else if (b[3] == X && b[6] == X && b[0] == empty) {
+        return 0;
+    } else if (b[0] == X && b[6] == X && b[3] == empty) {
+        return 3;
+    }
+    if (b[1] == X && b[4] == X && b[7] == empty) {
+        return 7;
+    } else if (b[4] == X && b[7] == X && b[1] == empty) {
+        return 1;
+    } else if (b[1] == X && b[7] == X && b[4] == empty) {
+        return 4;
+    }
+    if (b[2] == X && b[5] == X && b[8] == empty) {
+        return 8;
+    } else if (b[5] == X && b[8] == X && b[2] == empty) {
+        return 2;
+    } else if (b[2] == X && b[8] == X && b[5] == empty) {
+        return 5;
+    }
+    if (b[0] == X && b[4] == X && b[8] == empty) {
+        return 8;
+    } else if (b[4] == X && b[8] == X && b[0] == empty) {
+        return 0;
+    } else if (b[0] == X && b[8] == X && b[4] == empty) {
+        return 4;
+    }
+    if (b[2] == X && b[4] == X && b[6] == empty) {
+        return 6;
+    } else if (b[4] == X && b[6] == X && b[2] == empty) {
+        return 2;
+    } else if (b[2] == X && b[6] == X && b[4] == empty) {
+        return 4;
+    }
+
+    //if cant win or block pick middle side (not corner)
+    if (b[1] == empty && b[7] == empty) {
+        return 1;
+    } else if (b[3] == empty && b[5] == empty) {
+        return 3;
+    } else if (b[5] == empty && b[3] == empty) {
+        return 5;
+    } else if (b[7] == empty && b[1] == empty) {
+        return 7;
+    } else if (b[0] == empty) {
+        return 0;
+    } else if (b[2] == empty) {
+        return 2;
+    } else if (b[6] == empty) {
+        return 6;
+    } else if (b[8] == empty) {
+        return 8;
+    }
+
+    std::cout << "error";
+    return 4;
 }
 
 void playerAI() { // runs a player vs. AI game
@@ -98,16 +247,17 @@ void playerAI() { // runs a player vs. AI game
     int moves = 0; // number of spaces filled
     int space; // players space choice
 
-    std::cout << "You will be playing as the X player. The AI will always win or draw." << std::endl;
+    std::cout << "The AI will always win or draw." << std::endl;
 
     while (game == cont && moves < 9) { // while the game has not been won yet or board not filled yet
         if (xTurn == true) { // if x's turn else AI turn
-            std::cout << "X Player's turn!" << std::endl;
+            std::cout << "Your turn!" << std::endl;
             std::cout << "To select your space, please input the number of the tile: ";
             std::cin >> space; // asks for player input for space choice
 
             bool choosing = true;
             while (choosing) { // while player is choosing a space
+                space--;
                 if (boardState[space] == empty) { // if the space is empty
                     boardState[space] = X; // assigns the space an X
                     std::cout << std::endl;
@@ -121,7 +271,10 @@ void playerAI() { // runs a player vs. AI game
             }
             xTurn = false;
         } else { // AI move
-            
+            boardState[chooseSpace(boardState)] = O;
+            drawBoard(boardState);
+            std::cout << "The AI responded." << std::endl;
+            xTurn = true;
         }
 
         game = checkState(boardState); // checks gamestate (win lose draw continue)
@@ -151,6 +304,7 @@ void pVp() { // runs a player vs. player game
 
             bool choosing = true;
             while (choosing) { // while player is choosing a space
+                space--;
                 if (boardState[space] == empty) { // if the space is empty
                     boardState[space] = X; // assigns the space an X
                     std::cout << std::endl;
@@ -170,6 +324,7 @@ void pVp() { // runs a player vs. player game
 
             bool choosing = true;
             while (choosing) { // while player is choosing a space
+                space--;
                 if (boardState[space] == empty) { // if the space is empty
                     boardState[space] = O; // assigns the space an O
                     std::cout << std::endl;
