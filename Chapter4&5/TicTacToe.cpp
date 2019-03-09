@@ -100,12 +100,15 @@ wld checkState(std::array<state, 9> b) { // checks every possible win state for 
     return cont;
 }
 
-int chooseSpace(std::array<state, 9> b) { // returns best space for the AI to play - tries to block player 
+int chooseSpace(std::array<state, 9> b, int m) { // returns best space for the AI to play - tries to block player 
     // tries to win
     if (b[4] == empty) {
         return 4;
-    }
-    if (b[0] == O && b[1] == O && b[2] == empty) {
+    } else if (m == 1) {
+        if (b[4] == X) {
+            return 0;
+        }
+    } else if (b[0] == O && b[1] == O && b[2] == empty) {
         return 2;
     } else if (b[1] == O && b[2] == O && b[0] == empty) {
         return 0;
@@ -271,7 +274,7 @@ void playerAI() { // runs a player vs. AI game
             }
             xTurn = false;
         } else { // AI move
-            boardState[chooseSpace(boardState)] = O;
+            boardState[chooseSpace(boardState, moves)] = O;
             drawBoard(boardState);
             std::cout << "The AI responded." << std::endl;
             xTurn = true;
