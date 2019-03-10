@@ -1,7 +1,7 @@
 /**
  * Eric Bollar
  * This runs a simple tic tac toe game where the player can play against another player or against an AI.
- * The AI will always win.
+ * The AI will always win or draw.
  * Last updated 3/10/2019
  * */
 
