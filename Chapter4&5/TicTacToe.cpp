@@ -2,7 +2,7 @@
  * Eric Bollar
  * This runs a simple tic tac toe game where the player can play against another player or against an AI.
  * The AI will always win.
- * Last updated 3/8/19
+ * Last updated 3/10/2019
  * */
 
 #include <iostream>
@@ -104,6 +104,8 @@ int chooseSpace(std::array<state, 9> b, int m) { // returns best space for the A
     // tries to win
     if (b[4] == empty) {
         return 4;
+    } else if (b[5] == X && b[7] == X && b[8] == empty) {
+        return 8;
     } else if (m == 1) {
         if (b[4] == X) {
             return 0;
