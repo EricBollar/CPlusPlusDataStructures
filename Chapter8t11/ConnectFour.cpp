@@ -124,6 +124,7 @@ int main () {
     while (b.checkWin() == white && moves < 42) {
         int choice;
         if (blueTurn) {
+            std::cout << std::endl;
             std::cout << "It is Blue's Turn! Please choose a column (1-7): ";
             std::cin >> choice;
             choice--;
@@ -140,9 +141,11 @@ int main () {
                 }
             }
 
+            std::cout << "-------------------------------------------------" << std::endl;
             b.drawBoard();
             blueTurn = false;
         } else {
+            std::cout << std::endl;
             std::cout << "It is Red's Turn! Please choose a column (1-7): ";
             std::cin >> choice;
             choice--;
@@ -158,6 +161,7 @@ int main () {
                 }
             }
             
+            std::cout << "-------------------------------------------------" << std::endl;
             b.drawBoard();
             blueTurn = true;
         }
