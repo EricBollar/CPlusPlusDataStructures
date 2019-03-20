@@ -1,15 +1,12 @@
 #include "Operator.h"
 #include "CFourClass.h"
 
-<<<<<<< HEAD
 void Operator::run(game g) {
     switch (g) {
         case c4 : Operator::CFour(); break;
     }
 }
 
-=======
->>>>>>> 077a0f032d91142d8d70b1cdb13b3b119ef23ded
 void Operator::CFour() {
     ConnectFour b;
     b.resetBoard();
