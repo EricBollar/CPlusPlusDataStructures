@@ -1,6 +1,12 @@
 #include "Operator.h"
 #include "CFourClass.h"
 
+void Operator::run(game g) {
+    switch (g) {
+        case c4 : Operator::CFour(); break;
+    }
+}
+
 void Operator::CFour() {
     ConnectFour b;
     b.resetBoard();

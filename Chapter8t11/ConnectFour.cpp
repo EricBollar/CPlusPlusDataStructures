@@ -3,5 +3,5 @@
 
 int main () {
     Operator op;
-    op.CFour();
+    op.run(c4);
 }

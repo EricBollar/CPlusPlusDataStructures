@@ -15,9 +15,9 @@ tile ConnectFour::checkWin() {
     for (int r = 0; r < 6; r++) { // checks all horizontal wins
         for (int c = 0; c <= 3; c++) {
             if (board[r][c] == red && board[r][c + 1] == red && board[r][c + 2] == red && board[r][c + 3] == red) {
-                return tile::red;
+                return red;
             } else if (board[r][c] == blue && board[r][c + 1] == blue && board[r][c + 2] == blue && board[r][c + 3] == blue) {
-                return tile::blue;
+                return blue;
             }
         }
     }
@@ -25,9 +25,9 @@ tile ConnectFour::checkWin() {
     for (int c = 0; c < 7; c++) { // checks all vertical wins
         for (int r = 0; r <= 2; r++) {
             if (board[r][c] == red && board[r + 1][c] == red && board[r + 2][c] == red && board[r + 3][c] == red) {
-                return tile::red;
+                return red;
             } else if (board[r][c] == blue && board[r + 1][c] == blue && board[r + 2][c] == blue && board[r + 3][c] == blue) {
-                return tile::blue;
+                return blue;
             }
         }
     }
@@ -36,21 +36,21 @@ tile ConnectFour::checkWin() {
         for (int r = 0; r < 6; r++) {
             if (r <= 2) {
                 if (board[r][c] == blue && board[r + 1][c + 1] == blue && board[r + 2][c + 2] == blue && board[r + 3][c + 3] == blue) {
-                    return tile::blue;
+                    return blue;
                 } else if (board[r][c] == red && board[r + 1][c + 1] == red && board[r + 2][c + 2] == red && board[r + 3][c + 3] == red) {
-                    return tile::red;
+                    return red;
                 }
             } else {
                 if (board[r][c] == blue && board[r - 1][c + 1] == blue && board[r - 2][c + 2] == blue && board[r - 3][c + 3] == blue) {
-                    return tile::blue;
+                    return blue;
                 } else if (board[r][c] == red && board[r - 1][c + 1] == red && board[r - 2][c + 2] == red && board[r - 3][c + 3] == red) {
-                    return tile::red;
+                    return red;
                 }
             }
         }
     }
 
-    return tile::white;
+    return white;
 }
 
 void ConnectFour::drawBoard() {
@@ -70,7 +70,7 @@ void ConnectFour::drawBoard() {
 
 void ConnectFour::resetBoard() {
     for (int c = 0; c < 7; c++) {
-        board[c].fill(tile::white);
+        board[c].fill(white);
     }
 }
 
