@@ -1,5 +1,7 @@
 #include <iostream>
+#include "Operator.h"
 
 int main () {
-    std::cout << "Hello World!" << std::endl;
+    Operator op;
+    op.CFour();
 }
