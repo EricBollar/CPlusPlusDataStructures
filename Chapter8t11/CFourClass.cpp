@@ -15,9 +15,15 @@ tile ConnectFour::checkWin() {
     for (int r = 0; r < 6; r++) { // checks all horizontal wins
         for (int c = 0; c <= 3; c++) {
             if (board[r][c] == red && board[r][c + 1] == red && board[r][c + 2] == red && board[r][c + 3] == red) {
+<<<<<<< HEAD
                 return red;
             } else if (board[r][c] == blue && board[r][c + 1] == blue && board[r][c + 2] == blue && board[r][c + 3] == blue) {
                 return blue;
+=======
+                return tile::red;
+            } else if (board[r][c] == blue && board[r][c + 1] == blue && board[r][c + 2] == blue && board[r][c + 3] == blue) {
+                return tile::blue;
+>>>>>>> 077a0f032d91142d8d70b1cdb13b3b119ef23ded
             }
         }
     }
@@ -25,9 +31,15 @@ tile ConnectFour::checkWin() {
     for (int c = 0; c < 7; c++) { // checks all vertical wins
         for (int r = 0; r <= 2; r++) {
             if (board[r][c] == red && board[r + 1][c] == red && board[r + 2][c] == red && board[r + 3][c] == red) {
+<<<<<<< HEAD
                 return red;
             } else if (board[r][c] == blue && board[r + 1][c] == blue && board[r + 2][c] == blue && board[r + 3][c] == blue) {
                 return blue;
+=======
+                return tile::red;
+            } else if (board[r][c] == blue && board[r + 1][c] == blue && board[r + 2][c] == blue && board[r + 3][c] == blue) {
+                return tile::blue;
+>>>>>>> 077a0f032d91142d8d70b1cdb13b3b119ef23ded
             }
         }
     }
@@ -36,6 +48,7 @@ tile ConnectFour::checkWin() {
         for (int r = 0; r < 6; r++) {
             if (r <= 2) {
                 if (board[r][c] == blue && board[r + 1][c + 1] == blue && board[r + 2][c + 2] == blue && board[r + 3][c + 3] == blue) {
+<<<<<<< HEAD
                     return blue;
                 } else if (board[r][c] == red && board[r + 1][c + 1] == red && board[r + 2][c + 2] == red && board[r + 3][c + 3] == red) {
                     return red;
@@ -45,12 +58,27 @@ tile ConnectFour::checkWin() {
                     return blue;
                 } else if (board[r][c] == red && board[r - 1][c + 1] == red && board[r - 2][c + 2] == red && board[r - 3][c + 3] == red) {
                     return red;
+=======
+                    return tile::blue;
+                } else if (board[r][c] == red && board[r + 1][c + 1] == red && board[r + 2][c + 2] == red && board[r + 3][c + 3] == red) {
+                    return tile::red;
+                }
+            } else {
+                if (board[r][c] == blue && board[r - 1][c + 1] == blue && board[r - 2][c + 2] == blue && board[r - 3][c + 3] == blue) {
+                    return tile::blue;
+                } else if (board[r][c] == red && board[r - 1][c + 1] == red && board[r - 2][c + 2] == red && board[r - 3][c + 3] == red) {
+                    return tile::red;
+>>>>>>> 077a0f032d91142d8d70b1cdb13b3b119ef23ded
                 }
             }
         }
     }
 
+<<<<<<< HEAD
     return white;
+=======
+    return tile::white;
+>>>>>>> 077a0f032d91142d8d70b1cdb13b3b119ef23ded
 }
 
 void ConnectFour::drawBoard() {
@@ -70,7 +98,11 @@ void ConnectFour::drawBoard() {
 
 void ConnectFour::resetBoard() {
     for (int c = 0; c < 7; c++) {
+<<<<<<< HEAD
         board[c].fill(white);
+=======
+        board[c].fill(tile::white);
+>>>>>>> 077a0f032d91142d8d70b1cdb13b3b119ef23ded
     }
 }
 
